@@ -2,8 +2,6 @@
 
 from serial import Serial
 
-IN1, IN2, IN3, IN4 = range(4)
-OUT1, OUT2, OUT3 = range(3)
 ON, OFF = True, False
 
 class UsbUartIo(Serial):
@@ -18,24 +16,23 @@ class UsbUartIo(Serial):
         self.rts = False
         super().__del__()
 
-    def out(self, id, state):
-        if id == OUT1:
-            self.dtr = state
-        elif id == OUT2:
-            self.rts = state
-        elif id == OUT3:
-            self.break_condition = state
-        else:
-            pass # do nothing
+    def out1(self, state):
+        self.dtr = state
 
-    def inp(self, id):
-        if id == IN1:
-            return self.cts
-        elif id == IN2:
-            return self.dsr
-        elif id == IN3:
-            return self.cd
-        elif id == IN4:
-            return self.ri
-        else:
-            return OFF
+    def out2(self, state):
+        self.rts = state
+
+    def out3(self, state):
+        self.break_condition = state
+
+    def inp1(self):
+        return self.cts
+
+    def inp2(self):
+        return self.dsr
+
+    def inp3(self):
+        return self.cd
+
+    def inp4(self):
+        return self.ri

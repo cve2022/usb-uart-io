@@ -8,10 +8,9 @@ import time
 def main():
     uio = UsbUartIo()
     while True:
-        uio.out(OUT1, uio.inp(IN1))
-        uio.out(OUT2, uio.inp(IN2))
-        out3 = uio.inp(IN3) or uio.inp(IN4)
-        uio.out(OUT3, out3)
+        uio.out(OUT1, uio.inp(IN1) or uio.inp(IN4))
+        uio.out(OUT2, uio.inp(IN2) or uio.inp(IN4))
+        uio.out(OUT3, uio.inp(IN3) or uio.inp(IN4))
         time.sleep(0.2)
 
 if __name__ == "__main__":

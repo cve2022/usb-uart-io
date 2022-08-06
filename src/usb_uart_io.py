@@ -11,7 +11,7 @@ class UsbUartIo(Serial):
         super().__init__(port)
         self.dtr = False
         self.rts = False
-    
+
     def __del__(self):
         self.break_condition = False
         self.dtr = False
